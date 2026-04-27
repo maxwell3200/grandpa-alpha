@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>סבא גבר אלפא</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:#000;
+    font-family:Arial, sans-serif;
+    color:white;
+}
+
+/* רקע */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url("grandpa.jpg") center center / cover no-repeat;
+    filter:brightness(0.45);
+    z-index:-3;
+}
+
+/* שכבת אור */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at center, rgba(255,215,0,0.15), transparent 60%);
+    z-index:-2;
+}
+
+/* כותרת */
+h1{
+    position:absolute;
+    top:25px;
+    width:100%;
+    text-align:center;
+    font-size:54px;
+    color:gold;
+    text-shadow:0 0 20px gold;
+    animation:pulse 1.5s infinite;
+}
+
+/* תמונת סבא */
+#grandpa{
+    position:absolute;
+    left:50%;
+    top:52%;
+    transform:translate(-50%,-50%);
+    width:420px;
+    border-radius:25px;
+    box-shadow:0 0 30px gold;
+    animation:floaty 2.2s ease-in-out infinite;
+}
+
+/* כתר */
+#crown{
+    position:absolute;
+    left:50%;
+    top:15%;
+    transform:translateX(-50%);
+    width:170px;
+    animation:crownMove 1.2s ease-in-out infinite;
+}
+
+/* טקסט תחתון */
+#sub{
+    position:absolute;
+    bottom:40px;
+    width:100%;
+    text-align:center;
+    font-size:30px;
+    color:#fff;
+    text-shadow:0 0 12px #fff;
+}
+
+/* כסף עף */
+.money{
+    position:absolute;
+    top:-80px;
+    font-size:40px;
+    animation:fall linear forwards;
+    opacity:.9;
+}
+
+/* אנימציות */
+@keyframes floaty{
+    0%{transform:translate(-50%,-50%) translateY(0);}
+    50%{transform:translate(-50%,-50%) translateY(-18px);}
+    100%{transform:translate(-50%,-50%) translateY(0);}
+}
+
+@keyframes crownMove{
+    0%{transform:translateX(-50%) rotate(-4deg);}
+    50%{transform:translateX(-50%) rotate(4deg);}
+    100%{transform:translateX(-50%) rotate(-4deg);}
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.04);}
+    100%{transform:scale(1);}
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+    to{
+        transform:translateY(120vh) rotate(720deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔥 סבא גבר אלפא 🔥</h1>
+
+<img id="grandpa" src="grandpa.jpg">
+<img id="crown" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Crown_icon_gold.svg/512px-Crown_icon_gold.svg.png">
+
+<div id="sub">Respect Level: MAXIMUM</div>
+
+<!-- מוזיקה -->
+<audio autoplay loop controls style="position:absolute;left:20px;bottom:20px;z-index:5;">
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function createMoney(){
+    const m = document.createElement("div");
+    m.className="money";
+    m.innerHTML="💵";
+    m.style.left=Math.random()*100+"vw";
+    m.style.animationDuration=(3+Math.random()*3)+"s";
+    m.style.fontSize=(30+Math.random()*30)+"px";
+    document.body.appendChild(m);
+
+    setTimeout(()=>m.remove(),6000);
+}
+
+setInterval(createMoney,350);
+</script>
+
+</body>
+</html>
